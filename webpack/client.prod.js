@@ -5,6 +5,7 @@ const Dotenv = require('dotenv-webpack')
 const autoprefixer = require('autoprefixer')
 const ServiceWorkerPlugin = require('serviceworker-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const rxPaths = require('rxjs/_esm5/path-mapping')
 
 module.exports = {
   name: 'client',
@@ -58,7 +59,8 @@ module.exports = {
   resolve: {
     alias: {
       components: path.resolve(__dirname, '..', 'src/components/'),
-      reducers: path.resolve(__dirname, '..', 'src/redux/')
+      reducers: path.resolve(__dirname, '..', 'src/redux/'),
+      ...rxPaths()
     },
     extensions: ['.json', '.js', '.jsx']
   },
@@ -96,6 +98,7 @@ module.exports = {
       entry: path.join(__dirname, '..', 'src/sw.js'),
       excludes: ['*hot-update*', '**/*.map', '**/stats.json']
     }),
-    new webpack.HashedModuleIdsPlugin() // not needed for strategy to work (just good practice)
+    new webpack.HashedModuleIdsPlugin(), // not needed for strategy to work (just good practice)
+    new webpack.optimize.ModuleConcatenationPlugin()
   ]
 }

@@ -1,13 +1,9 @@
 // @flow
 
-import { Observable } from 'rxjs/Observable'
-import 'rxjs/add/operator/mergeMap'
-import 'rxjs/add/observable/of'
-import 'rxjs/add/observable/from'
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/takeUntil'
-import 'rxjs/add/operator/catch'
-import type { ActionsObservable } from 'redux-observable'
+import { ofType, type ActionsObservable } from 'redux-observable'
+import { mergeMap, map, takeUntil, catchError } from 'rxjs/operators'
+import { from } from 'rxjs/observable/from'
+import { of } from 'rxjs/observable/of'
 import { apiFetch } from '../../helpers/Api'
 
 import {
@@ -64,17 +60,19 @@ export function getDataFailure(error: string): getDataFailureAction {
 }
 
 export const fetchNeoFeedEpic = (action$: ActionsObservable<Actions>) =>
-  action$
-    .ofType(FETCHING_DATA)
-    .map(action => ({
+  action$.pipe(
+    ofType(FETCHING_DATA),
+    map(action => ({
       startDate: action.payload.startDate,
       endDate: action.payload.endDate
-    }))
-    .mergeMap(({ startDate, endDate }) =>
-      Observable.from(
+    })),
+    mergeMap(({ startDate, endDate }) =>
+      from(
         apiFetch(`/feed?start_date=${startDate}&end_date=${endDate}`)
+      ).subscribe(
+        map(result => getDataSuccess(result)),
+        takeUntil(ofType(FETCHING_DATA)),
+        catchError((error: string) => of(getDataFailure(error)))
       )
-        .map(result => getDataSuccess(result))
-        .takeUntil(action$.ofType(FETCHING_DATA))
-        .catch((error: string) => Observable.of(getDataFailure(error)))
     )
+  )
