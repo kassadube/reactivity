@@ -11,7 +11,7 @@ import Examples from 'app/containers/Examples'
 import Hero from 'app/containers/Hero/Hero'
 import Home from 'app/containers/Home'
 import NotFound from 'app/containers/NotFound'
-import config from '../config'
+import config from './config'
 import style from './index.scss'
 
 const App = () => (
