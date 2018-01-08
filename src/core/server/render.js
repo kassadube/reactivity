@@ -8,9 +8,9 @@ import {
 import { renderToNodeStream } from 'react-dom/server'
 import { flushChunkNames } from 'react-universal-component/server'
 import flushChunks from 'webpack-flush-chunks'
-import configureStore from '../redux/configureStore'
-import App from '../containers/App/App'
-import Html from '../helpers/Html'
+import App from 'app'
+import Html from 'helpers/Html'
+import configureStore from 'reducers/configureStore'
 
 export default ({ clientStats }) => (req, res) => {
   const { wrappedEpic, store } = configureStore(wrapRootEpic)

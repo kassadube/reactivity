@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const compression = require('compression')
 const zlib = require('zlib')
-const { app } = require('../src/server')
+const { app } = require('../src/core/server')
 const clientConfig = require('../webpack/client.prod')
 
 const { output: { publicPath } } = clientConfig

@@ -62,8 +62,11 @@ module.exports = {
   },
   resolve: {
     alias: {
-      components: path.resolve(__dirname, '..', 'src/components/'),
-      reducers: path.resolve(__dirname, '..', 'src/redux/')
+      helpers: path.resolve(__dirname, '..', 'src/core/helpers/'),
+      utils: path.resolve(__dirname, '..', 'src/core/utils/'),
+      app: path.resolve(__dirname, '..', 'src/app/'),
+      components: path.resolve(__dirname, '..', 'src/core/components/'),
+      reducers: path.resolve(__dirname, '..', 'src/core/redux/')
     },
     extensions: ['.json', '.js', '.jsx']
   },

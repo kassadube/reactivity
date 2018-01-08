@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/takeUntil'
 import 'rxjs/add/operator/catch'
 import type { ActionsObservable } from 'redux-observable'
-import { apiFetch } from '../../helpers/Api'
+import { apiFetch } from 'helpers/Api'
 
 import {
   FETCHING_DATA,

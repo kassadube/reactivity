@@ -3,8 +3,8 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import type { FormProps } from 'redux-form'
-import TextField from '../TextField/TextField'
-import SelectField from '../SelectField/SelectField'
+import TextField from 'components/TextField/TextField'
+import SelectField from 'components/SelectField/SelectField'
 import typicalValidation from './TypicalValidation'
 
 const TypicalForm = ({

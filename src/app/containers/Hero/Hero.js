@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import GithubButton from 'components/GithubButton/GithubButton'
+import GithubButton from 'app/components/GithubButton/GithubButton'
 import style from './Hero.scss'
 import logo from './logo.svg'
 import github from './github.svg'

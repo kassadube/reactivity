@@ -3,9 +3,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Helmet from 'react-helmet'
-import TypicalFrom from 'components/TypicalForm/TypicalForm'
-import { fetchData } from 'reducers/neo'
-import type { Neo } from 'reducers/neo'
+import TypicalFrom from 'app/components/TypicalForm/TypicalForm'
+import type { Neo } from 'app/redux/neo/types'
+import { fetchData } from 'app/redux/neo/actions'
 
 type Props = {
   neo: Array<Neo>,

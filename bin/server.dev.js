@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware')
-const { app } = require('../src/server')
+const { app } = require('../src/core/server')
 
 const clientConfig = require('../webpack/client.dev')
 const serverConfig = require('../webpack/server.dev')
